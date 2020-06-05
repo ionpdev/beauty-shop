@@ -1,8 +1,9 @@
 import React from 'react'
 
-import './directory.styles.scss'
-import '../menu-item/menu-item.component'
 import MenuItem from '../menu-item/menu-item.component'
+
+import './directory.styles.scss'
+
 
 class Directory extends React.Component{
     constructor() {
@@ -22,7 +23,8 @@ class Directory extends React.Component{
                 },
                 {
                     title: 'Body',
-                    imageUrl: 'https://res.cloudinary.com/lush/image/upload/s--l7bH1cvv--/c_fill,h_305,q_jpegmini,w_521/v1/lush_website_uk/2020/02/03/dream_cream_hand_and_body_lotion_hero_ayr_5.jpg'
+                    imageUrl: 'https://res.cloudinary.com/lush/image/upload/s--R6w5aOJV--/c_fill,h_200,q_jpegmini,w_200/v1/lush_content/products/main/2017/10/web_dream_cream_self_preserved_body_lotion_ayr_2017.jpg?itok=Nus0peO2',
+                    linkUrl: 'shop/body'
                 },
                 {
                     title: 'Hair',
@@ -44,11 +46,9 @@ class Directory extends React.Component{
     render() {
         return(
             <div className='directory-menu'>
-                {
-                    this.state.sections.map(({title, imageUrl, id, size}) => (
-                        <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
-                    ))
-                }
+                 {this.state.sections.map(({ id, ...otherSectionProps }) => (
+                <MenuItem key={id} {...otherSectionProps} />
+                ))}
             </div>
         )
     }
