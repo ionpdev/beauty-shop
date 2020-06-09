@@ -1,17 +1,33 @@
 import firebase from "firebase/app"
 import 'firebase/firestore'
 import 'firebase/auth'
+import firebaseApiKey from './firebase.apikey'
 
-const config = {
-    apiKey: "AIzaSyA2hKd2Ks--Al1Bkck9Uf_ckMGJMJXO1jI",
-    authDomain: "beauty-shop-db.firebaseapp.com",
-    databaseURL: "https://beauty-shop-db.firebaseio.com",
-    projectId: "beauty-shop-db",
-    storageBucket: "beauty-shop-db.appspot.com",
-    messagingSenderId: "295654181283",
-    appId: "1:295654181283:web:a7ab81d080081eb589f216",
-    measurementId: "G-86B0W6Z264"
-  }
+const config = firebaseApiKey
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+    if (!userAuth) return
+
+    const userRef = firestore.doc(`users/${userAuth.uid}`)
+    const snapShot = await userRef.get()
+
+    if(!snapShot.exists) {
+        const { displayName, email } = userAuth
+        const createdAt = new Date()
+
+        try {
+            await userRef.set({
+                displayName,
+                email,
+                createdAt,
+                ...additionalData
+            })
+        } catch(error) {
+            console.log('error creating user', error.message)
+        }
+    }
+    return userRef
+}
 
 firebase.initializeApp(config)
 
