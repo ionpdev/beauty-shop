@@ -1,1 +1,1 @@
-Beauty Shop ReactJS Project
+Beauty Shop ReactJS with Redux for personal Portfolio Project
