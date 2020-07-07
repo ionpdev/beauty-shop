@@ -1,1 +1,2 @@
-Beauty Shop ReactJS with Redux for personal Portfolio Project
+Beauty Shop App - ReactJS with Redux for personal Portfolio Project
+

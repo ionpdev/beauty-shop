@@ -17,12 +17,12 @@ export const fetchCollectionsFailure = errorMessage => ({
   type: ShopActionTypes.FETCH_COLLECTIONS_FAILURE,
   payload: errorMessage
 })
-
+//redux thunk function 
 export const fetchCollectionsStartAsync = () => {
   return dispatch => {
     const collectionRef = firestore.collection('collections')
     dispatch(fetchCollectionsStart())
-
+    //using promise for fetching
     collectionRef
       .get()
       .then(snapshot => {
