@@ -13,6 +13,20 @@ import {
 } from './collection.styles'
 
 const CollectionPage = ({ collection }) => {
+
+  // How to use the CleanUp function
+  // useEffect(() => {
+  //   console.log('I am subscribing')
+  //   const unsubscribeFromCollections = firestore
+  //     .collection('collection')
+  //     .onSnapshot(snapshot => console.log(snapshot))
+  //   //cleanup function
+  //   return () => {
+  //     console.log('I am unsubscribing')
+  //     unsubscribeFromCollections()
+  //   }
+  // }, [])
+
   const { title, items } = collection;
   return (
     <CollectionPageContainer>
