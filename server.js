@@ -39,6 +39,19 @@ app.post('/payment', (req, res) => {
     })
 })
 
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
+ 
+app.use(expressCspHeader({
+    directives: {
+        'default-src': [SELF],
+        'script-src': [SELF, INLINE, 'somehost.com'],
+        'style-src': [SELF, 'mystyles.net'],
+        'img-src': ['data:', 'images.com'],
+        'worker-src': [NONE],
+        'block-all-mixed-content': true
+    }
+}))
+
 app.listen(port, error => {
     if(error) throw error
     console.log('Server running on port ' + port)
